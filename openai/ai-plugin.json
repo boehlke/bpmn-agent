@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "ProcessManager",
+  "name_for_human": "Process Manager",
+  "description_for_model": "An MCP plugin that manages BPMN process steps.",
+  "description_for_human": "Use this plugin to create, edit, and visualize BPMN diagrams with predefined process steps.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://abcd1234.ngrok.io/openapi.json",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://example.com/logo.png",
+  "contact_email": "support@example.com",
+  "legal_info_url": "https://example.com/legal"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "my-cursor-mcp-extension",
+  "publisher": "your-publisher-name",
+  "version": "0.0.1",
+  "description": "A Cursor IDE extension for MCP commands",
+  "categories": ["Other"],
+  "contributes": {
+    "commands": []
+  },
+  "main": "./dist/extension.js",
+  "activationEvents": [
+  ]
+} 

@@ -1,0 +1,331 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "components": {
+        "schemas": {
+            "MCPCommand": {
+                "anyOf": [
+                    {
+                        "$ref": "#/components/schemas/CreateDefinitionsCommand"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreateProcessCommand"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreateCollaborationCommand"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreateLaneCommand"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreateTaskCommand"
+                    },
+                    {
+                        "$ref": "#/components/schemas/CreateUserTaskCommand"
+                    },
+                    {
+                        "$ref": "#/components/schemas/UpdateCommand"
+                    },
+                    {
+                        "$ref": "#/components/schemas/MoveCommand"
+                    },
+                    {
+                        "$ref": "#/components/schemas/DeleteCommand"
+                    }
+                ]
+            },
+            "CollaborationAttributes": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateCollaborationCommand": {
+                "properties": {
+                    "action": {
+                        "const": "create",
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/CollaborationAttributes"
+                    },
+                    "elementType": {
+                        "const": "bpmn:Collaboration",
+                        "type": "string"
+                    },
+                    "parentId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateDefinitionsCommand": {
+                "properties": {
+                    "action": {
+                        "const": "create",
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/DefinitionsAttributes"
+                    },
+                    "elementType": {
+                        "const": "bpmn:Definitions",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateLaneCommand": {
+                "properties": {
+                    "action": {
+                        "const": "create",
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/LaneAttributes"
+                    },
+                    "elementType": {
+                        "const": "bpmn:Lane",
+                        "type": "string"
+                    },
+                    "parentId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateProcessCommand": {
+                "properties": {
+                    "action": {
+                        "const": "create",
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/ProcessAttributes"
+                    },
+                    "elementType": {
+                        "const": "bpmn:Process",
+                        "type": "string"
+                    },
+                    "parentId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateTaskCommand": {
+                "properties": {
+                    "action": {
+                        "const": "create",
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/TaskAttributes"
+                    },
+                    "elementType": {
+                        "const": "bpmn:Task",
+                        "type": "string"
+                    },
+                    "parentId": {
+                        "type": "string"
+                    },
+                    "position": {
+                        "properties": {
+                            "x": {
+                                "type": "number"
+                            },
+                            "y": {
+                                "type": "number"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateUserTaskCommand": {
+                "properties": {
+                    "action": {
+                        "const": "create",
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/UserTaskAttributes"
+                    },
+                    "elementType": {
+                        "const": "bpmn:UserTask",
+                        "type": "string"
+                    },
+                    "parentId": {
+                        "type": "string"
+                    },
+                    "position": {
+                        "properties": {
+                            "x": {
+                                "type": "number"
+                            },
+                            "y": {
+                                "type": "number"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "DefinitionsAttributes": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "DeleteCommand": {
+                "properties": {
+                    "action": {
+                        "const": "delete",
+                        "type": "string"
+                    },
+                    "elementType": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "LaneAttributes": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "MoveCommand": {
+                "properties": {
+                    "action": {
+                        "const": "move",
+                        "type": "string"
+                    },
+                    "elementType": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "position": {
+                        "properties": {
+                            "x": {
+                                "type": "number"
+                            },
+                            "y": {
+                                "type": "number"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Partial<DefinitionsAttributes&ProcessAttributes&CollaborationAttributes&LaneAttributes&TaskAttributes&UserTaskAttributes>": {
+                "properties": {
+                    "assignee": {
+                        "type": "string"
+                    },
+                    "documentation": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "isExecutable": {
+                        "type": "boolean"
+                    },
+                    "isForCompensation": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ProcessAttributes": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "isExecutable": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "TaskAttributes": {
+                "properties": {
+                    "documentation": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "isForCompensation": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateCommand": {
+                "properties": {
+                    "action": {
+                        "const": "update",
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/Partial<DefinitionsAttributes&ProcessAttributes&CollaborationAttributes&LaneAttributes&TaskAttributes&UserTaskAttributes>"
+                    },
+                    "elementType": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UserTaskAttributes": {
+                "properties": {
+                    "assignee": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
