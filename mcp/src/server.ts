@@ -10,7 +10,6 @@ import { z } from 'zod';
 import server, { bpmnModdle } from './mcp/server';
 import './mcp/bpmnTools';
 
-const moddle = new BPMNModdle();
 
 const app = express();
 
@@ -40,7 +39,7 @@ class State {
       'targetNamespace="http://bpmn.io/schema/bpmn">' +
       '</bpmn2:definitions>';
 
-    moddle.fromXML(xmlStr).then((definitions) => {
+    bpmnModdle.fromXML(xmlStr).then((definitions) => {
       this.bpmnModel = definitions;
       broadcastUpdate({ type: 'initial', model: definitions });
     });
@@ -109,7 +108,8 @@ app.get('/updates', (req: Request, res: Response) => {
   sseClients.add(res);
 
   // Send an initial event to confirm connection
-  res.write(`data: ${JSON.stringify({ message: "SSE Connected" })}\n\n`);
+  // send model xml
+  res.write(`data: \n\n`);
 
   // Clean up on client disconnect
   req.on('close', () => {
